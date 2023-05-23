@@ -1,5 +1,5 @@
 FROM payara/micro:5.2020.7-jdk11
-COPY target/gateway-ui.war ${DEPLOY_DIR}
+COPY target/lab-payaramicro-1.war ${DEPLOY_DIR}
 USER root
 RUN chown -R payara:payara /etc/
 USER payara
