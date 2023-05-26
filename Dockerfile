@@ -10,12 +10,6 @@ FROM registry.access.redhat.com/ubi8/openjdk-11
 #ln -s /opt/apache-maven-$MAVEN_VERSION $MAVEN_HOME && \
 #rm -f /tmp/apache-maven.tar.gz
 
-
-# Download specific
-ENV PAYARA_VERSION=5.201
-#ENV PAYARA_VERSION="$PAYARA_VERSION"
-RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://repo1.maven.org/maven2/fish/payara/extras/payara-micro/${PAYARA_VERSION}/payara-micro-${PAYARA_VERSION}.ja
-
 # Default payara ports to expose
 EXPOSE 6900 8080
 
@@ -43,3 +37,9 @@ COPY $SOURCE_DIR/target/lab-payaramicro-1.war ${DEPLOY_DIR}
 # Default command to run
 ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=90.0", "-jar", "payara-micro.jar"]
 CMD ["--deploymentDir", "/opt/payara/deployments"]
+
+# Download specific
+ENV PAYARA_VERSION=5.201
+#ENV PAYARA_VERSION="$PAYARA_VERSION"
+RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://repo1.maven.org/maven2/fish/payara/extras/payara-micro/5.201/payara-micro-5.201.ja
+#RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://repo1.maven.org/maven2/fish/payara/extras/payara-micro/${PAYARA_VERSION}/payara-micro-${PAYARA_VERSION}.ja
