@@ -1,19 +1,20 @@
-FROM azul/zulu-openjdk-alpine:8u222-jre
+#FROM azul/zulu-openjdk-alpine:8u222-jre
+FROM registry.access.redhat.com/ubi8/openjdk-11
 
 # Instalar Maven
-ENV MAVEN_VERSION="3.6.3"
-ENV MAVEN_HOME=/opt/maven
-ENV PATH=$MAVEN_HOME/bin:$PATH
-RUN curl --no-verbose -O /tmp/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
-tar xzf /tmp/apache-maven.tar.gz -C /opt/ && \
-ln -s /opt/apache-maven-$MAVEN_VERSION $MAVEN_HOME && \
-rm -f /tmp/apache-maven.tar.gz
+#ENV MAVEN_VERSION="3.6.3"
+#ENV MAVEN_HOME=/opt/maven
+#ENV PATH=$MAVEN_HOME/bin:$PATH
+#RUN curl --no-verbose -O /tmp/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
+#tar xzf /tmp/apache-maven.tar.gz -C /opt/ && \
+#ln -s /opt/apache-maven-$MAVEN_VERSION $MAVEN_HOME && \
+#rm -f /tmp/apache-maven.tar.gz
 
 
 # Download specific
 ARG PAYARA_VERSION="5.201"
 ENV PAYARA_VERSION="$PAYARA_VERSION"
-RUN curl --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://repo1.maven.org/maven2/fish/payara/extras/payara-micro/${PAYARA_VERSION}/payara-micro-${PAYARA_VERSION}.ja
+RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://repo1.maven.org/maven2/fish/payara/extras/payara-micro/${PAYARA_VERSION}/payara-micro-${PAYARA_VERSION}.ja
 
 # Default payara ports to expose
 EXPOSE 6900 8080
