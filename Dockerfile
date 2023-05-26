@@ -1,7 +1,7 @@
 FROM azul/zulu-openjdk-alpine:8u222-jre
 
 # Instalar Maven
-ENV MAVEN_VERSION=3.6.3
+ENV MAVEN_VERSION="3.6.3"
 ENV MAVEN_HOME=/opt/maven
 ENV PATH=$MAVEN_HOME/bin:$PATH
 RUN wget --no-verbose -O /tmp/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
