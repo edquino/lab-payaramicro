@@ -35,8 +35,8 @@ ENV PAYARA_VERSION="5.201"
 #RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://199.232.192.209/maven2/fish/payara/extras/payara-micro/5.201/payara-micro-5.201.ja
 RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://repo1.maven.org/maven2/fish/payara/extras/payara-micro/${PAYARA_VERSION}/payara-micro-${PAYARA_VERSION}.ja
 
-RUN  cd $SOURCE_DIR && mvn -s ./config/settings.xml clean package 
-COPY $SOURCE_DIR/target/lab-payaramicro-1.war ${DEPLOY_DIR}
+#RUN  cd $SOURCE_DIR && mvn -s ./config/settings.xml clean package 
+#COPY $SOURCE_DIR/target/lab-payaramicro-1.war ${DEPLOY_DIR}
 
 # Default command to run
 ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=90.0", "-jar", "payara-micro.jar"]
