@@ -5,7 +5,7 @@ FROM registry.access.redhat.com/ubi8/openjdk-11
 #ENV MAVEN_VERSION="3.6.3"
 ENV MAVEN_HOME=/opt/maven
 ENV PATH=$MAVEN_HOME/bin:$PATH
-RUN curl --no-verbose -O /tmp/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz && \
+RUN wget --no-verbose -O /tmp/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz && \
 tar xzf /tmp/apache-maven.tar.gz -C /opt/ && \
 ln -s /opt/apache-maven-$MAVEN_VERSION $MAVEN_HOME && \
 rm -f /tmp/apache-maven.tar.gz
