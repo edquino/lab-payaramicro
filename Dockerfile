@@ -12,8 +12,8 @@ FROM registry.access.redhat.com/ubi8/openjdk-11
 
 
 # Download specific
-ARG PAYARA_VERSION="5.201"
-ENV PAYARA_VERSION="$PAYARA_VERSION"
+ENV PAYARA_VERSION=5.201
+#ENV PAYARA_VERSION="$PAYARA_VERSION"
 RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://repo1.maven.org/maven2/fish/payara/extras/payara-micro/${PAYARA_VERSION}/payara-micro-${PAYARA_VERSION}.ja
 
 # Default payara ports to expose
