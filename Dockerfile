@@ -4,7 +4,7 @@ FROM azul/zulu-openjdk-alpine:8u222-jre
 ENV MAVEN_VERSION=3.6.3
 ENV MAVEN_HOME=/opt/maven
 ENV PATH=$MAVEN_HOME/bin:$PATH
-RUN wget --no-verbose -O /tmp/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
+RUN wget --no-verbose -O /tmp/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz && \
 tar xzf /tmp/apache-maven.tar.gz -C /opt/ && \
 ln -s /opt/apache-maven-$MAVEN_VERSION $MAVEN_HOME && \
 rm -f /tmp/apache-maven.tar.gz
