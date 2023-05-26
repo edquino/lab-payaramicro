@@ -4,11 +4,9 @@ FROM registry.access.redhat.com/ubi8/openjdk-11
 # Instalar Maven
 #ENV MAVEN_VERSION="3.6.3"
 ENV MAVEN_HOME=/opt/maven
+ENV MAVEN_TEMP=/temp
 ENV PATH=$MAVEN_HOME/bin:$PATH
-RUN wget --no-verbose -O /tmp/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz && \
-tar xzf /tmp/apache-maven.tar.gz -C /opt/ && \
-ln -s /opt/apache-maven-$MAVEN_VERSION $MAVEN_HOME && \
-rm -f /tmp/apache-maven.tar.gz
+#RUN wget --no-verbose -O ${MAVEN_TEMP}/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz && tar xzf /tmp/apache-maven.tar.gz -C /opt/ && ln -s /opt/apache-maven-$MAVEN_VERSION $MAVEN_HOME && rm -f /tmp/apache-maven.tar.gz
 
 # Default payara ports to expose
 EXPOSE 6900 8080
@@ -38,8 +36,8 @@ RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://repo1.maven.org
 #RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://repo1.maven.org/maven2/fish/payara/extras/payara-micro/${PAYARA_VERSION}/payara-micro-${PAYARA_VERSION}.ja
 
 
-RUN  cd $SOURCE_DIR && mvn -s ./config/settings.xml clean package 
-COPY $SOURCE_DIR/target/lab-payaramicro-1.war ${DEPLOY_DIR}
+#RUN  cd $SOURCE_DIR && mvn -s ./config/settings.xml clean package 
+#COPY $SOURCE_DIR/target/lab-payaramicro-1.war ${DEPLOY_DIR}
 
 # Default command to run
 ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=90.0", "-jar", "payara-micro.jar"]
