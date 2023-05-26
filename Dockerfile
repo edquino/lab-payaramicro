@@ -4,15 +4,16 @@ FROM azul/zulu-openjdk-alpine:8u222-jre
 EXPOSE 6900 8080
 
 # Configure environment variables
-ENV PAYARA_HOME=/opt/payara\ 
-DEPLOY_DIR=/opt/payara/deployments
+ENV PAYARA_HOME=/opt/payara \ 
+DEPLOY_DIR=/opt/payara/deployments \
+SOURCE_DIR=/opt/payara/src 
 
 # Create and set the Payara user and working directory owned by the new user
 RUN addgroup payara && \
 adduser -D -h ${PAYARA_HOME} -H -s /bin/bash payara -G payara && \
 echo payara:payara | chpasswd && \
 mkdir -p ${DEPLOY_DIR} && \
-mkdir -p ${PAYARA_HOME}/src && \
+mkdir -p ${SOURCE_DIR} && \
 chown -R payara:payara ${PAYARA_HOME}
 USER payara
 COPY src $SOURCE_DIR
