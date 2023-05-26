@@ -32,7 +32,7 @@ WORKDIR ${PAYARA_HOME}
 # Download specific
 ENV PAYARA_VERSION=5.201
 #ENV PAYARA_VERSION="$PAYARA_VERSION"
-RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://repo1.maven.org/maven2/fish/payara/extras/payara-micro/5.201/payara-micro-5.201.ja
+RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://199.232.192.209/maven2/fish/payara/extras/payara-micro/5.201/payara-micro-5.201.ja
 #RUN wget --no-verbose -O ${PAYARA_HOME}/payara-micro.jar https://repo1.maven.org/maven2/fish/payara/extras/payara-micro/${PAYARA_VERSION}/payara-micro-${PAYARA_VERSION}.ja
 
 
